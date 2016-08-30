@@ -1,0 +1,76 @@
+{
+  "name": "keystone-test",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "babel-core": "^6.4.5",
+    "babel-plugin-transform-object-assign": "^6.3.13",
+    "babel-plugin-transform-object-rest-spread": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "better-npm-run": "0.0.10",
+    "blacklist": "^1.1.2",
+    "body-parser": "^1.14.2",
+    "browserify-middleware": "^7.0.0",
+    "compression": "^1.6.1",
+    "connect-flash": "^0.1.1",
+    "elemental": "^0.5.12",
+    "express": "^4.13.4",
+    "gm": "^1.21.1",
+    "jade": "^1.11.0",
+    "lodash": "^4.13.1",
+    "lorem-ipsum": "^1.0.3",
+    "model-transform": "^2.0.0",
+    "mongodb": "^2.2.6",
+    "morgan": "^1.6.1",
+    "multer": "^0.1.8",
+    "pm2": "^1.1.3",
+    "randomkey": "^1.0.0",
+    "react": "^15.2.0",
+    "react-addons-css-transition-group": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "react-domify": "^0.2.4",
+    "store-prototype": "^1.1.1",
+    "arch-keystone": "^0.5.19",
+    "xhr": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^2.11.1",
+    "eslint-config-keystone": "^2.2.0",
+    "eslint-plugin-react": "^5.1.1"
+  },
+  "engines": {
+    "node": ">=0.12.7",
+    "npm": ">=2.14.2"
+  },
+  "scripts": {
+    "start": "better-npm-run start-prod",
+    "dev": "better-npm-run start-dev",
+    "dev_windows": "set KEYSTONE_DEV=true&&node keystone.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "validate": "npm ls"
+  },
+  "betterScripts": {
+    "start-prod": {
+      "command": "pm2 start keystone.js --name keystone",
+      "env": {
+        "PORT": 3000
+      }
+    },
+    "start-dev": {
+      "command": "node keystone.js",
+      "env": {
+        "NODE_ENV": "development",
+        "KEYSTONE_DEV": true,
+        "PORT": 3002
+      }
+    }
+  },
+  "main": "keystone.js",
+  "pre-commit": [
+    "test"
+  ]
+}
