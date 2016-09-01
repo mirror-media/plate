@@ -29,5 +29,5 @@ exports.locals = {
 
 exports.nav = {
 	'people': ['users', 'companies', 'contacts'],
-	'content': ['posts', 'post-categories', 'topics', 'documents', 'images', 'audios', 'tags']
+	'content': ['posts', 'sections', 'post-categories', 'topics', 'documents', 'images', 'audios', 'tags']
 };
