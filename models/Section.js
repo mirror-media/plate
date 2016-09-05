@@ -8,8 +8,9 @@ var Section = new keystone.List('Section', {
 });
 
 Section.add({
-	name: { type: String, required: true },
-	image: { type: Types.ImageRelationship, ref: 'Image' },
+	name: { label: '名稱', type: String, required: true },
+	image: { label: 'Logo', type: Types.ImageRelationship, ref: 'Image' },
+    categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
     style: { type: Types.Select, options: 'feature, listing, tile', default: 'feature' }
 });
 
