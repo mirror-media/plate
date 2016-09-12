@@ -3,13 +3,15 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var Section = new keystone.List('Section', {
-	autokey: { from: 'name', path: 'key', unique: true },
+	autokey: { from: 'sid', path: 'key', unique: true },
 	sortable: true,
 });
 
 Section.add({
-	name: { label: '名稱', type: String, required: true },
+    sid: { label: 'ID', type: String, required: true, unique: true, default: 'section-name' },
+	name: { label: '中文名稱', type: String, required: true },
 	image: { label: 'Logo', type: Types.ImageRelationship, ref: 'Image' },
+    description: { label: '簡介', type: String },
     categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
     style: { type: Types.Select, options: 'feature, listing, tile', default: 'feature' }
 });
