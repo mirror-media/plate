@@ -46,7 +46,7 @@ Post.schema.virtual('content.full').get(() => {
 transform.toJSON(Post);
 Post.defaultColumns = 'title, name, state|20%, author|20%, categories|20%, publishedDate|20%';
 Post.schema.pre('remove', function(next) {
-    Post.model.findOneAndUpdate({ '_id': this._id}, { 'status': 'archive'}, function (err, doc) {
+    Post.model.findOneAndUpdate({ '_id': this._id}, { 'state': 'archived'}, function (err, doc) {
         if (err) {
             console.log(err);
         } else {
