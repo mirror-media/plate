@@ -14,7 +14,7 @@ Post.add({
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived', default: 'draft', index: true },
   publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
   section: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
-  categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: false },
+  categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
   writers: { label: '作者', type: Types.Relationship, ref: 'Contact', many: true },
   photographers: { label: '攝影', type: Types.Relationship, ref: 'Contact', many: true },
   designers: { label: '設計', type: Types.Relationship, ref: 'Contact', many: true },
@@ -45,6 +45,15 @@ Post.schema.virtual('content.full').get(() => {
 
 transform.toJSON(Post);
 Post.defaultColumns = 'title, name, state|20%, author|20%, categories|20%, publishedDate|20%';
+Post.schema.pre('remove', function(next) {
+    Post.model.findOneAndUpdate({ '_id': this._id}, { 'status': 'archive'}, function (err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            next();
+        }
+    })
+});
 Post.schema.pre('save', function(next) {
     if (this.topics) {
         this.topics_ref = this.topics
