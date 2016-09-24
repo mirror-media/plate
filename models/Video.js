@@ -3,24 +3,23 @@ var keystone = require('arch-keystone');
 var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
-var Audio = new keystone.List('Audio', {
+var Video = new keystone.List('Video', {
     map: { name: 'title' }
 });
 var bucket = config['options']['gcs config']['bucket']
 
-Audio.add({
+Video.add({
     title: { type: String, required: true, initial: true },
     description: { type: Types.Html, wysiwyg: true, height: 150 },
-    audio: {
+    video: {
         type: Types.GcsFile,
         initial: true,
         autoCleanup: true,
         datePrefix: 'YYYYMMDDHHmmss',
         bucket: bucket,
-        destination: 'assets/audios/',
+        destination: 'assets/videos/',
         publicRead: true,
     },
-    coverPhoto: { type: Types.ImageRelationship, ref: 'Image' },
     tags: {
         type: Types.Relationship,
         ref: 'Tag',
@@ -29,6 +28,6 @@ Audio.add({
 });
 
 
-transform.toJSON(Audio);
-Audio.defaultColumns = 'title, audio, tags';
-Audio.register();
+transform.toJSON(Video);
+Video.defaultColumns = 'title, video, tags';
+Video.register();

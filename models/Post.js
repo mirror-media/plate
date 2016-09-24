@@ -4,6 +4,7 @@ var Types = keystone.Field.Types;
 
 var Post = new keystone.List('Post', {
 	autokey: { path: 'slug', from: 'name', unique: true },
+    track: true,
     defaultSort: '-publishedDate',
 });
 
@@ -20,6 +21,7 @@ Post.add({
   designers: { label: '設計', type: Types.Relationship, ref: 'Contact', many: true },
   engineers: { label: '工程', type: Types.Relationship, ref: 'Contact', many: true },
   extend_byline: { label: '作者（其他）', type: String, require: false },
+  heroVideo: { label: 'Leading Video', type: Types.ImageRelationship, ref: 'Video' },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
   heroImageSize: { label: '首圖尺寸', type: Types.Select, options: 'extend, normal, small', default: 'normal', dependsOn: { heroImage: {'$regex': '.+/i'}}},
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
@@ -55,6 +57,8 @@ Post.schema.pre('remove', function(next) {
     })
 });
 Post.schema.pre('save', function(next) {
+    // console.log('current user =>', this._req_user);
+    // Topics part
     if (this.topics) {
         this.topics_ref = this.topics
     }

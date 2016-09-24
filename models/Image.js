@@ -18,7 +18,7 @@ Image.add({
         datePrefix: 'YYYYMMDDHHmmss',
         // TODO move these settings to config
         bucket: bucket,
-        destination: 'images/',
+        destination: 'assets/images/',
         publicRead: true,
         resize: resizeImage,
         resizeOpts: [{

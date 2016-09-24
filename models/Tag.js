@@ -3,6 +3,7 @@ var transform = require('model-transform');
 
 var Tag = new keystone.List('Tag', {
 	autokey: { from: 'name', path: 'key', unique: true },
+    reack: true,
 });
 
 Tag.add({

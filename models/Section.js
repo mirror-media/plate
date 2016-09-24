@@ -4,6 +4,7 @@ var Types = keystone.Field.Types;
 
 var Section = new keystone.List('Section', {
 	autokey: { from: 'name', path: 'key', unique: true },
+    track: true,
 	sortable: true,
 });
 

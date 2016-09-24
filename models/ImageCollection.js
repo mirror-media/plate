@@ -19,7 +19,7 @@ ImageCollection.add({
         autoCleanup: true,
         datePrefix: 'YYYYMMDDHHmmss',
         bucket: bucket,
-        destination: 'images/',
+        destination: 'assets/images/',
         publicRead: true,
         resize: resizeImage,
         resizeOpts: [{

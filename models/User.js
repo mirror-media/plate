@@ -2,7 +2,9 @@ var keystone = require('arch-keystone');
 var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
-var User = new keystone.List('User');
+var User = new keystone.List('User', {
+    track: true,
+});
 
 User.add({
 	name: { type: String, required: true, index: true },
