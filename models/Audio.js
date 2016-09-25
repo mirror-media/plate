@@ -4,7 +4,8 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var Audio = new keystone.List('Audio', {
-    map: { name: 'title' }
+    map: { name: 'title' },
+    defaultSort: '-createTime',
 });
 var bucket = config['options']['gcs config']['bucket']
 
@@ -26,6 +27,7 @@ Audio.add({
         ref: 'Tag',
         many: true
     },
+    createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
 
 

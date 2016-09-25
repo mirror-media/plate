@@ -6,7 +6,8 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var Image = new keystone.List('Image', {
-    map: { name: 'description' }
+    map: { name: 'description' },
+    defaultSort: 'createTime',
 });
 var bucket = config['options']['gcs config']['bucket']
 
@@ -61,6 +62,7 @@ Image.add({
         type: Boolean,
         index: true
     },
+    createTime: {type: Types.Datetime, default: Date.now, utc: true },
 });
 
 Image.relationship({
