@@ -12,6 +12,7 @@ Choice.add({
     choices: { label: '精選文章', type: Types.Relationship, ref: 'Post', many: true },
 });
 
+Choice.defaultColumns = 'key, pickDate';
 Choice.relationship({ ref: 'Post', refPath: 'choices' });
 
 transform.toJSON(Choice);
