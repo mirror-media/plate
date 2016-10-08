@@ -20,5 +20,12 @@ Section.add({
 Section.defaultColumns = 'title, name, style';
 Section.relationship({ ref: 'Post', refPath: 'section' });
 
+Section.schema.pre('save', function(next) {
+    if (this._req_user.role != 'Admin') {
+        var err = new Error("You don't have the permission")
+        next(err);
+    }
+});
+
 transform.toJSON(Section);
 Section.register();

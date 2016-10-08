@@ -17,5 +17,12 @@ PostCategory.add({
 PostCategory.relationship({ ref: 'Post', refPath: 'categories' });
 PostCategory.defaultColumns = "title, name";
 
+PostCategory.schema.pre('save', function(next) {
+    if (this._req_user.role != 'Admin') {
+        var err = new Error("You don't have the permission")
+        next(err);
+    }
+});
+
 transform.toJSON(PostCategory);
 PostCategory.register();
