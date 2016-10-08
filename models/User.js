@@ -41,6 +41,14 @@ User.schema.path('password').set(value => {
 	return (this.isProtected) ? '$2a$10$8oUbHJPIUrW5z2aHoIGfP.q0SC5DrLDrX1qLkwhjQ3nYQ9Ay2nGPu' : value;
 });
 
+User.schema.pre('save', function(next) {
+    if ( this._req_user.role != 'admin') {
+        var err = new Error("You don't have the permission")
+        next(err);
+    } else {
+        next()
+    }
+});
 
 transform.toJSON(User);
 User.defaultColumns = 'name, email, role, isAdmin';

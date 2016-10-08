@@ -18,6 +18,15 @@ Contact.add({
 
 Contact.relationship({ ref: 'Post', refPath: 'writters' });
 
+Contact.schema.pre('save', function(next) {
+    if ( this._req_user.role != 'admin') {
+        var err = new Error("You don't have the permission")
+        next(err);
+    } else {
+        next()
+    }
+});
+
 transform.toJSON(Contact);
 Contact.defaultColumns = 'name, email, favouriteFlavour, birthday, homepage';
 Contact.register();

@@ -58,8 +58,6 @@ Post.schema.pre('remove', function(next) {
     })
 });
 Post.schema.pre('save', function(next) {
-    console.log(this.state)
-    console.log(this._req_user.role)
     if ((this.state == 'published' || this.state == 'scheduled') && ( this._req_user.role == 'author' || this._req_user.role == 'contributor')) {
         var err = new Error("You don't have the permission")
         next(err);
