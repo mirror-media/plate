@@ -32,7 +32,7 @@
     "react-dom": "^15.2.0",
     "react-domify": "^0.2.4",
     "store-prototype": "^1.1.1",
-    "arch-keystone": "0.5.26",
+    "arch-keystone": "0.5.27",
     "xhr": "^2.2.0"
   },
   "devDependencies": {
