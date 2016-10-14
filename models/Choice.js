@@ -10,6 +10,7 @@ var Choice = new keystone.List('Choice', {
 Choice.add({
 	pickDate: { label: '日期', type: Types.Datetime, default: Date.now, required: true },
     choices: { label: '精選文章', type: Types.Relationship, ref: 'Post', many: true },
+    isPublished: { label: '出版', type: Boolean, index: true },
 });
 
 Choice.defaultColumns = 'key, pickDate';
