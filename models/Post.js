@@ -18,6 +18,7 @@ Post.add({
   categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
   writers: { label: '作者', type: Types.Relationship, ref: 'Contact', many: true },
   photographers: { label: '攝影', type: Types.Relationship, ref: 'Contact', many: true },
+  camera_man: { label: '影音', type: Types.Relationship, ref: 'Contact', many: true },
   designers: { label: '設計', type: Types.Relationship, ref: 'Contact', many: true },
   engineers: { label: '工程', type: Types.Relationship, ref: 'Contact', many: true },
   extend_byline: { label: '作者（其他）', type: String, require: false },
