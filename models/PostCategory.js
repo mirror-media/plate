@@ -10,7 +10,7 @@ var PostCategory = new keystone.List('PostCategory', {
 
 PostCategory.add({
   name: { label: "名稱", type: String, required: true },
-  title: { label: "中文名稱", type: String, required: true, default: "分類" }
+  title: { label: "中文名稱", type: String, required: true, default: "分類" },
   isFeatured: { label: '置頂', type: Boolean, index: true },
 });
 

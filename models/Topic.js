@@ -1,5 +1,6 @@
 var keystone = require('arch-keystone');
 var transform = require('model-transform');
+var Types = keystone.Field.Types;
 
 var Topic = new keystone.List('Topic', {
 	autokey: { from: 'name', path: 'key', unique: true },
