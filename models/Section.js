@@ -14,6 +14,7 @@ Section.add({
 	image: { label: 'Logo', type: Types.ImageRelationship, ref: 'Image' },
     description: { label: '簡介', type: String },
     categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
+    extend_cats: { label: '其他分類', type: Types.Relationship, ref: 'PostCategory', many: true },
     style: { type: Types.Select, options: 'feature, listing, tile', default: 'feature' }
 });
 
