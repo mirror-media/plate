@@ -9,13 +9,14 @@ var Section = new keystone.List('Section', {
 });
 
 Section.add({
-	name: { label: '名稱', type: String, required: true },
-	title: { label: '中文名稱', type: String, required: true, default: '頻道' },
-	image: { label: 'Logo', type: Types.ImageRelationship, ref: 'Image' },
-    description: { label: '簡介', type: String },
-    categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
-    extend_cats: { label: '其他分類', type: Types.Relationship, ref: 'PostCategory', many: true },
-    style: { type: Types.Select, options: 'feature, listing, tile', default: 'feature' }
+  name: { label: '名稱', type: String, required: true },
+  title: { label: '中文名稱', type: String, required: true, default: '頻道' },
+  image: { label: 'Logo', type: Types.ImageRelationship, ref: 'Image' },
+  description: { label: '簡介', type: String },
+  categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
+  extend_cats: { label: '其他分類', type: Types.Relationship, ref: 'PostCategory', many: true },
+  isFeatured: { label: '置頂', type: Boolean, index: true },
+  style: { type: Types.Select, options: 'feature, listing, tile', default: 'feature' }
 });
 
 Section.defaultColumns = 'title, name, style';
