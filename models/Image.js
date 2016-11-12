@@ -54,6 +54,8 @@ Image.add({
         options: 'Creative-Commons, Copyrighted',
         default: 'Copyrighted', index: true
     },
+    topics: { label: '專題', type: Types.Relationship, ref: 'Topic' },
+    tags: { label: '標籤', type: Types.Relationship, ref: 'Tag', many: true },
     keywords: {
         type: String,
         index: true
