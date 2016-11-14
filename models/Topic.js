@@ -9,8 +9,9 @@ var Topic = new keystone.List('Topic', {
 Topic.add({
   name: { label: '專題名稱', type: String, required: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
-  heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video' },
-  heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
+  leading: { label: '標頭樣式', type: Types.Select, options: 'video, slideshow, image', index: true },
+  heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video', dependsOn: { leading: 'video' } },
+  heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image', dependsOn: { leading: 'image' } },
   heroImageSize: { label: '首圖尺寸', type: Types.Select, options: 'extend, normal, small', default: 'normal', dependsOn: { heroImage: {'$regex': '.+/i'}}},
   og_title: { label: 'FB分享標題', type: String, require: false},
   og_description: { label: 'FB分享說明', type: String, require: false},
