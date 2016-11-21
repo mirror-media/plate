@@ -7,33 +7,17 @@ var Event = new keystone.List('Event', {
 	track: true,
 });
 
-var deps = {
-	videoEmbed: { videoEmbed: true, videoEmbedData: { exists: true } },
-};
-
 Event.add({
-	name: { type: String, initial: true, required: true, index: true },
-	eventType: { type: Types.Select, options: [ 'workshop', 'retreat', 'course', 'festival' ], index: true },
-	eventState: { type: Types.Select, options: 'new, draft, published, suspended, archived', index: true },
-	startDate: { type: Types.Date, initial: true, required: true },
-	endDate: { type: Types.Date, initial: true },
-});
-
-Event.add('Contact Information', {
-	phone: { type: String, width: 'short' },
-	website: { type: Types.Url, collapse: true },
-	location: { type: Types.Location, collapse: true, initial: true, required: ['suburb'] },
-	bookingUrl: { type: Types.Url, collapse: true },
-});
-
-Event.add('Description', {
-	price: { type: String, collapse: true },
-	content: {
-		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		summary: { type: Types.Html, hidden: true },
-		extended: { type: Types.Html, wysiwyg: true, height: 400 },
-	},
-	schedule: { type: Types.Html, wysiwyg: true, collapse: true },
+  name: { type: String, initial: true, required: true, index: true },
+  state: { label: '狀態', type: Types.Select, options: 'draft, published', default: 'draft', index: true },
+  sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
+  eventType: { type: Types.Select, options: [ 'embedded', 'video', 'image' ], index: true },
+  startDate: { type: Types.Datetime, initial: true, required: true },
+  endDate: { type: Types.Datetime, initial: true },
+  video: { label: 'Video', type: Types.Relationship, ref: 'Video', dependsOn: { 'eventType': 'video' } },
+  embed: { label: 'Embedded code', type: String, dependsOn: { 'eventType': 'embedded' } },
+  image: { label: 'Image', type: Types.ImageRelationship, ref: 'Image', dependsOn: { 'eventType': 'image' } },
+  isFeatured: { label: '置頂', type: Boolean, index: true },
 });
 
 transform.toJSON(Event);
