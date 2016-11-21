@@ -7,7 +7,7 @@ var Types = keystone.Field.Types;
 
 var Image = new keystone.List('Image', {
     map: { name: 'description' },
-    defaultSort: 'createTime',
+    defaultSort: '-createTime',
 });
 var bucket = config['options']['gcs config']['bucket']
 
