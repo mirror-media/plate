@@ -5,6 +5,7 @@ var Types = keystone.Field.Types;
 var Event = new keystone.List('Event', {
 	autokey: { from: 'name', path: 'key', unique: true },
 	track: true,
+	defaultSort: '-startDate',
 });
 
 Event.add({
