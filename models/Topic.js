@@ -4,6 +4,8 @@ var Types = keystone.Field.Types;
 
 var Topic = new keystone.List('Topic', {
 	autokey: { from: 'name', path: 'key', unique: true },
+    track: true,
+	sortable: true,
 });
 
 Topic.add({
