@@ -17,6 +17,11 @@ Section.add({
   extend_cats: { label: '其他分類', type: Types.Relationship, ref: 'PostCategory', many: true },
   isFeatured: { label: '置頂', type: Boolean, index: true },
   style: { type: Types.Select, options: 'feature, listing, tile', default: 'feature' }
+  og_title: { label: 'FB分享標題', type: String, require: false},
+  og_description: { label: 'FB分享說明', type: String, require: false},
+  og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
+  css: { label: 'CSS', type: Types.Textarea },
+  javascript: { label: 'javascript', type: Types.Textarea },
 });
 
 Section.defaultColumns = 'title, name, style';
