@@ -21,6 +21,7 @@ Topic.add({
   isFeatured: { label: '置頂', type: Boolean, index: true },
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
+  dfp: { label: 'DFP code', type: String, require: false},
 });
 
 Topic.relationship({ ref: 'Post', refPath: 'topics' });
