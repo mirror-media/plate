@@ -49,7 +49,6 @@ Post.schema.virtual('content.full').get(() => {
 transform.toJSON(Post);
 Post.defaultColumns = 'title, name, state|20%, author|20%, categories|20%, publishedDate|20%';
 Post.schema.pre('remove', function(next) {
-    console.log(this._req_user)
     Post.model.findOneAndUpdate({ '_id': this._id}, { 'state': 'archived'}, function (err, doc) {
         if (err) {
             console.log(err);
@@ -59,7 +58,7 @@ Post.schema.pre('remove', function(next) {
     })
 });
 Post.schema.pre('save', function(next) {
-	console.log(this.userId)
+	this.updatedBy = this._req_user.name
     if ((this.state == 'published' || this.state == 'scheduled') && ( this._req_user.role == 'author' || this._req_user.role == 'contributor')) {
         var err = new Error("You don't have the permission")
         next(err);
