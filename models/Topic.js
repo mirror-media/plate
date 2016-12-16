@@ -22,7 +22,7 @@ Topic.add({
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   dfp: { label: 'DFP code', type: String, require: false},
-  mobil_dfp: { label: 'Mobile DFP code', type: String, require: false},
+  mobile_dfp: { label: 'Mobile DFP code', type: String, require: false},
 });
 
 Topic.relationship({ ref: 'Post', refPath: 'topics' });
