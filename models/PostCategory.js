@@ -18,6 +18,7 @@ PostCategory.add({
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   css: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
+  isCampaign: { label: '活動分類', type: Boolean, index: true },
 });
 
 PostCategory.relationship({ ref: 'Post', refPath: 'categories' });
