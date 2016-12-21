@@ -37,7 +37,7 @@ Post.add({
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
   isAdvertised: { label: '廣告', type: Boolean, index: true },
-  isCampagin: { label: '活動', type: Boolean, index: true },
+  isCampaign: { label: '活動', type: Boolean, index: true },
   device: { label: '裝置', type: Types.Select, options: 'all, web, app', default: 'all', index: true },
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
