@@ -19,6 +19,7 @@ Topic.add({
   og_description: { label: 'FB分享說明', type: String, require: false},
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
+  type: { label: '型態', type: String, options: 'list, timeline', default: 'list' },
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   dfp: { label: 'DFP code', type: String, require: false},
