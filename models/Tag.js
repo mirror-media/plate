@@ -10,6 +10,7 @@ var Tag = new keystone.List('Tag', {
 Tag.add({
   name: { label: '標籤名稱', type: String, required: true, unique: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
+  sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
   style: { type: Types.Select, options: 'feature, listing, tile, full', default: 'feature' },
   leading: { label: '標頭樣式', type: Types.Select, options: 'video, slideshow, image', index: true },
   heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video', dependsOn: { leading: 'video' } },
