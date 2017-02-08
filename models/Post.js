@@ -24,6 +24,7 @@ Post.add({
   extend_byline: { label: '作者（其他）', type: String, require: false },
   heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video' },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
+  heroCaption: { label: '首圖圖說', type: String, require: false },
   heroImageSize: { label: '首圖尺寸', type: Types.Select, options: 'extend, normal, small', default: 'normal', dependsOn: { heroImage: {'$regex': '.+/i'}}},
   style: { label: '文章樣式', type: Types.Select, options: 'article, projects, photography, script', default: 'article', index: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
