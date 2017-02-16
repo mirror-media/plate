@@ -3,7 +3,7 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var Post = new keystone.List('Post', {
-	autokey: { path: 'slug', from: 'name', unique: true },
+	autokey: { path: 'slug', from: 'name', unique: true, fixed: true },
     track: true,
     defaultSort: '-publishedDate',
 });
