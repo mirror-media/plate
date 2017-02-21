@@ -9,7 +9,7 @@ var Post = new keystone.List('Post', {
 });
 
 Post.add({
-  name: { label: '網址名稱（英文）', type: String, required: true },
+  name: { label: '網址名稱（英文）', type: String, required: true, unique: true },
   title: { label: '標題', type: String, require: true, default: 'untitled' },
   subtitle: { label: '副標', type: String, require: false },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived', default: 'draft', index: true },

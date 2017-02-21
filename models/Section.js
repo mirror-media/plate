@@ -15,18 +15,19 @@ Section.add({
   description: { label: '簡介', type: String },
   categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
   extend_cats: { label: '其他分類', type: Types.Relationship, ref: 'PostCategory', many: true },
+  heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
   style: { type: Types.Select, options: 'feature, listing, tile, full', default: 'feature' },
   og_title: { label: 'FB分享標題', type: String, require: false },
   og_description: { label: 'FB分享說明', type: String, require: false },
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   timeline: { label: 'Twitter 帳號', type: String },
+  topics: { label: '專題', type: Types.Relationship, ref: 'Topic', many: true },
   css: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
 });
 
 Section.defaultColumns = 'title, name, style';
-Section.relationship({ ref: 'Post', refPath: 'section' });
 
 Section.schema.pre('save', function(next) {
     if ( this._req_user.role != 'admin') {
