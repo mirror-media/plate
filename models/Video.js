@@ -5,12 +5,15 @@ var Types = keystone.Field.Types;
 
 var Video = new keystone.List('Video', {
     map: { name: 'title' },
+	track: true,
     defaultSort: '-createTime',
 });
 var bucket = config['options']['gcs config']['bucket']
 
 Video.add({
     title: { type: String, required: true, initial: true },
+    sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
+    categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     video: {
         type: Types.GcsFile,
