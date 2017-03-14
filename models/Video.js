@@ -29,6 +29,7 @@ Video.add({
         ref: 'Tag',
         many: true
     },
+    relateds: { label: '相關影片', type: Types.Relationship, ref: 'Video', many: true },
     createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
 
