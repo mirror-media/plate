@@ -26,7 +26,7 @@ Post.add({
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
   heroCaption: { label: '首圖圖說', type: String, require: false },
   heroImageSize: { label: '首圖尺寸', type: Types.Select, options: 'extend, normal, small', default: 'normal', dependsOn: { heroImage: {'$regex': '.+/i'}}},
-  style: { label: '文章樣式', type: Types.Select, options: 'article, projects, photography, script', default: 'article', index: true },
+  style: { label: '文章樣式', type: Types.Select, options: 'article, wide, projects, photography, script', default: 'article', index: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
   content: { label: '內文', type: Types.Html, wysiwyg: true, height: 400, dependsOn: { '$or': { style: ['article', 'photography', 'script'] }} },
   topics: { label: '專題', type: Types.Relationship, ref: 'Topic' },
