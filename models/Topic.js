@@ -20,7 +20,7 @@ Topic.add({
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
   title_style: { label: '專題樣式', type: Types.Select, options: 'feature, wide', default: 'feature', index: true },
-  type: { label: '型態', type: String, options: 'list, timeline', default: 'list' },
+  type: { label: '型態', type: Types.Select, options: 'list, timeline', default: 'list' },
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   dfp: { label: 'DFP code', type: String, require: false},
