@@ -28,7 +28,7 @@ Node.add({
 });
 
 transform.toJSON(Node);
-Node.defaultColumns = 'title, state|20%, nodeDate|20%';
+Node.defaultColumns = 'name, state|20%, nodeDate|20%, isFeatured|20%';
 Node.schema.pre('remove', function(next) {
     Node.model.findOneAndUpdate({ '_id': this._id}, { 'state': 'archived'}, function (err, doc) {
         if (err) {
