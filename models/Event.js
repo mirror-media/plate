@@ -17,7 +17,7 @@ Event.add({
   endDate: { type: Types.Datetime, initial: true },
   video: { label: 'Video', type: Types.Relationship, ref: 'Video', dependsOn: { 'eventType': 'video' } },
   embed: { label: 'Embedded code', type: String, dependsOn: { 'eventType': 'embedded' } },
-  image: { label: 'Image', type: Types.ImageRelationship, ref: 'Image', dependsOn: { 'eventType': 'image' } },
+  image: { label: 'Image', type: Types.ImageRelationship, ref: 'Image', dependsOn: { '$or': [ { 'eventType': 'image' }, { 'eventType': 'logo'} ] } },
   isFeatured: { label: '置頂', type: Boolean, index: true },
 });
 
