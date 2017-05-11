@@ -22,6 +22,7 @@ Topic.add({
   isFeatured: { label: '置頂', type: Boolean, index: true },
   title_style: { label: '專題樣式', type: Types.Select, options: 'feature, wide', default: 'feature', index: true },
   type: { label: '型態', type: Types.Select, options: 'list, timeline', default: 'list' },
+  source: { label: '資料來源', type: Types.Select, options: 'posts, activities', dependsOn: { type: 'timeline' } },
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   dfp: { label: 'DFP code', type: String, require: false},

@@ -9,6 +9,7 @@ var Activity = new keystone.List('Activity', {
 
 Activity.add({
   name: { label: "名稱", type: String, required: true, unique: true },
+  topics: { label: '專題', type: Types.Relationship, ref: 'Topic' },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived', default: 'draft', index: true },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
   heroCaption: { label: '首圖圖說', type: String, require: false },
