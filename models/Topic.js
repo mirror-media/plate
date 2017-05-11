@@ -10,6 +10,7 @@ var Topic = new keystone.List('Topic', {
 
 Topic.add({
   name: { label: '專題名稱', type: String, required: true },
+  state: { label: '狀態', type: Types.Select, options: 'draft, published', default: 'draft', index: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
   leading: { label: '標頭樣式', type: Types.Select, options: 'video, slideshow, image', index: true },
   sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
@@ -23,6 +24,7 @@ Topic.add({
   title_style: { label: '專題樣式', type: Types.Select, options: 'feature, wide', default: 'feature', index: true },
   type: { label: '型態', type: Types.Select, options: 'list, timeline', default: 'list' },
   source: { label: '資料來源', type: Types.Select, options: 'posts, activities', dependsOn: { type: 'timeline' } },
+  sort: { label: '時間軸排序', type: Types.Select, options: 'asc, desc', dependsOn: { type: 'timeline' } },
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   dfp: { label: 'DFP code', type: String, require: false},
