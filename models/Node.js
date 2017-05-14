@@ -8,11 +8,11 @@ var Node = new keystone.List('Node', {
 });
 
 Node.add({
-  name: { label: '標題', type: String, require: true, default: '活動標題', unique: true },
+  name: { label: '標題', type: String, require: true, default: '活動標題' },
   nodeDate: { label: '事件時間', type: String, default: '2016/1/1' },
   subtitle: { label: '副標', type: String, require: false },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived', default: 'draft', index: true },
-  activity: { label: '活動', type: Types.Relationship, ref: 'Activity', many: true },
+  activity: { label: '活動', type: Types.Relationship, ref: 'Activity', many: false },
   heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video' },
   audio: { label: 'Audio', type: Types.Relationship, ref: 'Audio' },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
