@@ -27,7 +27,7 @@ Topic.add({
   type: { label: '型態', type: Types.Select, options: 'list, timeline', default: 'list' },
   source: { label: '資料來源', type: Types.Select, options: 'posts, activities', dependsOn: { type: 'timeline' } },
   sort: { label: '時間軸排序', type: Types.Select, options: 'asc, desc', dependsOn: { type: 'timeline' } },
-  tags: { label: '標籤', type: Types.Relationship, ref: 'Activity', many: true, dependsOn: { type 'timeline' } },
+  activities: { label: '標籤', type: Types.Relationship, ref: 'Activity', many: true, dependsOn: { type: 'timeline' } },
   style: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   dfp: { label: 'DFP code', type: String, require: false},
