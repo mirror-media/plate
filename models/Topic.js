@@ -10,6 +10,7 @@ var Topic = new keystone.List('Topic', {
 
 Topic.add({
   name: { label: '專題名稱', type: String, required: true },
+  heroImage: { label: '專題主圖', type: Types.ImageRelationship, ref: 'Image' },
   subtitle: { label: '副標', type: String, require: false },
   state: { label: '狀態', type: Types.Select, options: 'draft, published', default: 'draft', index: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
