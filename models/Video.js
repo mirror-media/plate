@@ -14,7 +14,7 @@ Video.add({
     title: { type: String, required: true, initial: true },
     sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
     categories: { label: '分類', type: Types.Relationship, ref: 'PostCategory', many: true },
-    heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
+    coverPhoto: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     video: {
         type: Types.GcsFile,
