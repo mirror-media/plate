@@ -73,4 +73,6 @@ Post.schema.pre('save', function(next) {
     }
     next();
 });
+Post.editorController = true; 
+Post.notifyBeforeLeave = true; 
 Post.register();
