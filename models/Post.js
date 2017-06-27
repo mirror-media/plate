@@ -42,6 +42,9 @@ Post.add({
   lockJS: { label: '鎖定右鍵', type: Boolean, index: true },
   device: { label: '裝置', type: Types.Select, options: 'all, web, app', default: 'all', index: true },
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
+  isEditing: { type: Boolean, default: false, hidden: true },
+  currEditor: { type: String, default: 'N/A', hidden: true },
+  currEditorId: { type: String, default: 'N/A', hidden: true },
 });
 
 Post.relationship({ ref: 'Post', refPath: 'relateds' });
