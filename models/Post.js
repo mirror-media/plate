@@ -46,6 +46,7 @@ Post.add({
   isEditing: { type: Boolean, default: false, hidden: true },
   currEditor: { type: String, default: 'N/A', hidden: true },
   currEditorId: { type: String, default: 'N/A', hidden: true },
+  editingLockStart: { type: Types.Datetime, utc: true, hidden: true },
 });
 
 Post.relationship({ ref: 'Post', refPath: 'relateds' });
