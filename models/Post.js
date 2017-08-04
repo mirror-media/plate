@@ -78,7 +78,7 @@ Post.schema.pre('save', function(next) {
     }
     next();
 });
-Post.editorController = true; 
+Post.editorController = false; 
 Post.notifyBeforeLeave = true;
 Post.preview = 'https://dev.mirrormedia.mg/story';
 Post.previewId = 'slug'
