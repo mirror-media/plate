@@ -100,40 +100,39 @@ node {
         }
     }
 
-    // stage("Deploy") {
-    //     try {
-    //         // Deploy to dev
-    //         sh("kubectl set image deploy/vue-deployment plate-vue=${imageTag}:${slack_user}_${build_time}")
-    //         // Watch until rollout success
-    //         sh("kubectl rollout status deployment/vue-deployment -w")
+    stage("Deploy") {
+        try {
+           // Deploy to dev
+           sh("kubectl set image deploy/keystone-deploy keystone-plate=${imageTag}:${slack_user}_${build_time}")
+           // Watch until rollout success
+           sh("kubectl rollout status deployment/keystone-deploy -w")
 
-    //         sh("sleep 30s")
+           sh("sleep 30s")
 
-    //     } catch(e) {
-    //         slackSend (color: '#FF0000', message: "Huston, we got a *deploy* problem.")
-    //         currentBuild.result = 'FAILURE'
-    //         throw e
-    //     }
+        } catch(e) {
+           //slackSend (color: '#FF0000', message: "Huston, we got a *deploy* problem.")
+           notifySlack("",[
+                    [
+                        color: "#FF0000",
+                        title: "Deploy FAILED",
+                        text: "Houston, we have a *deploy* problem\n```${e.getMessage()}```",
+            			mrkdwn_in: ["text"]
+        		    ]
+                ])
+            currentBuild.result = 'FAILURE'
+            throw e
+        }
         
-    //     slackSend (color: '#FCE028', message: "@${slack_user}, you've got build. Check out https://dev.mirrormedia.mg")
-    // }
-
-    // stage("Upload Dist"){
-    //     try {
-    //         // sh("sleep 30s")
-
-    //         // Upload dist files to cloud storage
-    //         // def pod_name = kubectl get pod | grep vue | grep Running | awk '{print $1}'
-    //         sh('kubectl cp $(kubectl get pod | grep vue | grep Running | awk \'{print $1}\'):/usr/src/dist /dist')
-    //         sh("gsutil -m -h 'Cache-Control:max-age=2592000,public' cp -z gzip -a public-read /dist/** gs://mirrormedia-files/dist")
-    //     } catch(e) {
-    //         slackSend (color: '#FF0000', message: "Huston, we got an *Upload* problem.")
-    //         currentBuild.result = 'FAILURE'
-    //         throw e
-    //     }
-        
-    //     slackSend (color: '#3A7BD1', message: "Upload dist files *SUCCESS*. We are good to go.")
-    // }
+        //slackSend (color: '#FCE028', message: "@${slack_user}, you've got build. Check out https://dev.mirrormedia.mg")
+        notifySlack("",[
+            [
+                color: "#3A7BD1",
+                title: "Deploy Success",
+                text: "@${slack_user}, you have a <http://35.189.183.129:3000|new Keystone>.",
+        		mrkdwn_in: ["text"]
+    	    ]
+        ])
+    }
 }
 
 def notifySlack(text, attachments) {
