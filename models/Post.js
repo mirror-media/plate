@@ -75,7 +75,7 @@ Post.schema.pre('save', function(next) {
     next();
 });
 Post.editorController = true;
-Post.editorControllerTtl = 60000;
+Post.editorControllerTtl = 600000;
 Post.notifyBeforeLeave = true;
 Post.preview = 'https://dev.mirrormedia.mg/story';
 Post.previewId = 'slug'
