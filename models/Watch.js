@@ -8,14 +8,15 @@ var Watch = new keystone.List('Watch', {
 });
 
 Watch.add({
-  brand: { label: '品牌', type: Types.Relationship, ref: 'Audio' },
+  brand: { label: '品牌', type: Types.Relationship, ref: 'WatchBrand' },
   name: { label: '品名', type: String },
   type: { label: '型號', type: String },
   watchImage: { label: '圖片', type: Types.ImageRelationship, ref: 'Image' },
-  price: { label: '價格', type: Types.Select, options: 'NTD30000以下, NTD30000~NTD70000, NTD70000~NTD150000, NTD150000~NTD300000, NTD300000~NTD500000, NTD500000~NTD1500000, NTD500000~NTD1500000,NTD3000000以上', index: true },
+  price: { label: '價格', type: Types.Select, options: 'NTD30,000以下, NTD30,000~NTD70,000, NTD70,000~NTD150,000, NTD150,000~NTD300,000, NTD300,000~NTD500,000, NTD500,000~NTD1,500,000, NTD3,000,000以上', index: true },
   sex: { label: '性別', type: Types.Select, options: '男錶款, 女錶款, 中性錶款', default: '中性錶款'},
   movement: { label: '機芯', type: Types.Select, options: '自動上鏈, 手動上鏈, 石英, 光動能, 人動電能, GPS, 電波, 智能錶' },
   power: { label: '動力', type: String },
+  watchfunction: { label: '功能', type: Types.Relationship, ref: 'WatchFunction', many: true },
   material: { label: '材質', type: Types.Select, options: '不鏽鋼, 半金, 銅, 黃金, 玫瑰金, 白金, 鉑金, 鉑金, 鈦金屬, 特殊合金, 複合材質' },
   waterproof: { label: '防水', type: Types.Select, options: '無, 30米, 50米, 100米, 200米, 300米, 600米, 1000米, 2000米, 2000米, 4000米' },
   content: { label: '內文', type: Types.Html, wysiwyg: true, height: 400 },
@@ -24,6 +25,6 @@ Watch.add({
 });
 
 transform.toJSON(Watch);
-Watch.defaultColumns = 'name, state|20%, WatchDate|20%, isFeatured|20%';
+Watch.defaultColumns = 'name, brand|20%, name|20%, type|20%, movement|20%';
 
 Watch.register();
