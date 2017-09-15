@@ -77,6 +77,6 @@ Post.schema.pre('save', function(next) {
 Post.editorController = true;
 Post.editorControllerTtl = 600000;
 Post.notifyBeforeLeave = true;
-Post.preview = 'https://dev.mirrormedia.mg/story';
+Post.preview = 'https://www.mirrormedia.mg/story';
 Post.previewId = 'slug'
 Post.register();
