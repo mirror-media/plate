@@ -7,12 +7,13 @@ var Watch = new keystone.List('Watch', {
     defaultSort: '-Createtime',
 });
 
+var price = 'NTD30000以下, NTD30000~NTD70000, NTD70000~NTD150000, NTD150000~NTD300000, NTD300000~NTD500000, NTD500000~NTD1500000, NTD3000000以上';
 Watch.add({
   brand: { label: '品牌', type: Types.Relationship, ref: 'WatchBrand' },
   name: { label: '品名', type: String },
   type: { label: '型號', type: String },
   watchImage: { label: '圖片', type: Types.ImageRelationship, ref: 'Image' },
-  price: { label: '價格', type: Types.Select, options: 'NTD30,000以下, NTD30,000~NTD70,000, NTD70,000~NTD150,000, NTD150,000~NTD300,000, NTD300,000~NTD500,000, NTD500,000~NTD1,500,000, NTD3,000,000以上', index: true },
+  price: { label: '價格', type: Types.Select, options: price, index: true },
   sex: { label: '性別', type: Types.Select, options: '男錶款, 女錶款, 中性錶款', default: '中性錶款'},
   movement: { label: '機芯', type: Types.Select, options: '自動上鏈, 手動上鏈, 石英, 光動能, 人動電能, GPS, 電波, 智能錶' },
   power: { label: '動力', type: String },
