@@ -5,6 +5,8 @@ var Types = keystone.Field.Types;
 var Watch = new keystone.List('Watch', {
     track: true,
     defaultSort: '-Createtime',
+    track: true,
+	sortable: true,
 });
 
 var price = 'NTD30000以下, NTD30000~NTD70000, NTD70000~NTD150000, NTD150000~NTD300000, NTD300000~NTD500000, NTD500000~NTD1500000, NTD3000000以上';
