@@ -15,7 +15,7 @@ Watch.add({
   name: { label: '品名', type: String },
   type: { label: '型號', type: String },
   watchImage: { label: '圖片', type: Types.ImageRelationship, ref: 'Image' },
-  price: { label: '價格', type: Types.Select, options: price, index: true },
+  price: { label: '價格', type: String },
   sex: { label: '性別', type: Types.Select, options: '男錶款, 女錶款, 中性錶款', default: '中性錶款'},
   movement: { label: '機芯', type: Types.Select, options: '自動上鏈, 手動上鏈, 石英, 光動能, 人動電能, GPS, 電波, 智能錶' },
   power: { label: '動力', type: String },
