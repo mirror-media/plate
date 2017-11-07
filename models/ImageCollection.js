@@ -26,17 +26,23 @@ ImageCollection.add({
             target: 'desktop',
             width: 2000,
             height: null,
-            options: {}
+            options: {
+              watermark: '/public/images/watermark-120x120.png'
+            }
         }, {
             target: 'tablet',
             width: 1200,
             height: null,
-            options: {}
+            options: {
+              watermark: '/public/images/watermark-120x120.png'
+            }
         }, {
             target: 'mobile',
             width: 800,
             height: null,
-            options: {}
+            options: {
+              watermark: '/public/images/watermark-120x120.png'
+            }
         }, {
             target: 'tiny',
             width: 150,
