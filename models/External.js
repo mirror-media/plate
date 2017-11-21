@@ -10,11 +10,13 @@ var External = new keystone.List('External', {
 
 External.add({
   name: { label: '網址名稱（英文）', type: String, required: true, unique: true },
+  partner: { type: Types.Relationship, ref: 'Partner', initial: true, index: true },
   title: { label: '標題', type: String, require: true, default: 'untitled' },
   subtitle: { label: '副標', type: String, require: false },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived, invisible', default: 'draft', index: true },
   publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
   extend_byline: { label: '作者', type: String, require: false },
+  thumb: { label: '小圖網址', type: String, require: false },
   brief: { label: '前言', type: Types.Textarea, height: 150 },
   content: { label: '內文', type: Types.Textarea, height: 400 },
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
