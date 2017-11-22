@@ -8,7 +8,7 @@ var Partner = new keystone.List('Partner', {
 
 Partner.add({
 	name: { label: '名稱', type: String, required: true, index: true },
-	website: { tybel: '網址', pe: Types.Url, index: true },
+	website: { tybel: '網址', type: Types.Url, index: true },
 });
 
 transform.toJSON(Partner);
