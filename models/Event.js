@@ -18,6 +18,7 @@ Event.add({
   video: { label: 'Video', type: Types.Relationship, ref: 'Video', dependsOn: { 'eventType': 'video' } },
   embed: { label: 'Embedded code', type: String, dependsOn: { '$or': [ { 'eventType': 'embedded' }, { 'eventType': 'mod' } ] } },
   image: { label: 'Image', type: Types.ImageRelationship, ref: 'Image', dependsOn: { '$or': [ { 'eventType': 'image' }, { 'eventType': 'logo'} ] } },
+  link: { label: '連結', type: String, dependsOn: { 'eventType': 'logo' } },
   isFeatured: { label: '置頂', type: Boolean, index: true },
 });
 
