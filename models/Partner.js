@@ -10,6 +10,7 @@ Partner.add({
 	name: { label: '名稱', type: String, required: true, index: true },
 	display: { label: '中文名稱', type: String, required: true, index: true },
 	website: { tybel: '網址', type: Types.Url, index: true },
+	public: { label: '公開', type: Boolean, index: true },
 });
 
 transform.toJSON(Partner);
