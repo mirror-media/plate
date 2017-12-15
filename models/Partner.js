@@ -8,7 +8,7 @@ var Partner = new keystone.List('Partner', {
 
 Partner.add({
 	name: { label: '名稱', type: String, required: true, index: true },
-	display: { label: '中文名稱', type: String, required: true, index: true },
+	display: { label: '中文名稱', type: String, required: true, index: true, default: '單位' },
 	website: { tybel: '網址', type: Types.Url, index: true },
 	public: { label: '公開', type: Boolean, index: true },
 });
