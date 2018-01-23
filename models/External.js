@@ -19,6 +19,7 @@ External.add({
   thumb: { label: '小圖網址', type: String, require: false },
   brief: { label: '前言', type: Types.Textarea, height: 150 },
   content: { label: '內文', type: Types.Textarea, height: 400 },
+  source: { label: '原文網址', type: String, require: false },
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
 
