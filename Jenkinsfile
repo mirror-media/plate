@@ -30,7 +30,7 @@ node {
             slack_user = slackUsers(git_author_mail)
             sh("echo slack target: ${slack_user}")
 
-            sh("git clone -b dev https://github.com/mirror-media/keystone-docker.git")
+            sh("git clone -b master https://github.com/mirror-media/keystone-docker.git")
 
             sh("gcloud source repos clone default --project=mirrormedia-1470651750304")
             sh("cp default/keystone/config.js keystone-docker/")
