@@ -26,12 +26,12 @@ PostCategory.relationship({ ref: 'Post', refPath: 'categories' });
 PostCategory.defaultColumns = "title, name";
 
 PostCategory.schema.pre('save', function(next) {
-    // if ( this._req_user.role != 'admin') {
-    //     var err = new Error("You don't have the permission")
-    //     next(err);
-    // } else {
+    if ( this._req_user.role != 'admin') {
+        var err = new Error("You don't have the permission")
+        next(err);
+    } else {
         next()
-    // }
+    }
 });
 
 transform.toJSON(PostCategory);
