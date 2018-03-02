@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "dependencies": {
+    "arch-keystone": "0.5.50",
     "babel-core": "^6.4.5",
     "babel-plugin-transform-object-assign": "^6.3.13",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
@@ -18,6 +19,7 @@
     "elemental": "^0.5.12",
     "express": "^4.13.4",
     "gm": "^1.21.1",
+    "image-size": "^0.6.2",
     "jade": "^1.11.0",
     "lodash": "^4.13.1",
     "lorem-ipsum": "^1.0.3",
@@ -32,7 +34,6 @@
     "react-dom": "^15.2.0",
     "react-domify": "^0.2.4",
     "store-prototype": "^1.1.1",
-    "arch-keystone": "0.5.50",
     "xhr": "^2.2.0"
   },
   "devDependencies": {
