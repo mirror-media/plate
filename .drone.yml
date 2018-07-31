@@ -1,0 +1,77 @@
+workspace:
+  base: /js
+  path: github.com/plate
+pipeline:
+  start_slack:
+    image: plugins/slack
+    channel: jenkins
+    secrets: [slack_webhook]
+    username: keystone-plate
+    icon_url: https://avatars3.githubusercontent.com/u/6118534?v=3&s=200
+    template: >
+      *start* building *{{repo.name}}*.
+      *{{build.author}}* give *{{build.branch}}* a little push.
+    when:
+      event: [push]
+      branch: master
+  
+  get_config:
+    image: gcr.io/mirrormedia-1470651750304/drone-cloud-sdk:latest
+    secrets: [google_credentials]
+    commands:
+    - gcloud source repos clone default ../default
+    - cp ../default/keystone/config.js ./config.js
+    - cp ../default/keystone/gcskeyfile.json ./gcskeyfile.json
+    when:
+      event: [push]
+      branch: master
+  
+  builds:
+    image: plugins/gcr
+    repo: mirrormedia-1470651750304/keystone-plate
+    tag: ${DRONE_COMMIT_AUTHOR}_${DRONE_COMMIT_BRANCH}_${DRONE_BUILD_NUMBER}
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    secrets: [google_credentials]
+    when:
+      event: [push]
+      branch: master
+  
+  deploy_dev:
+    image: nytimes/drone-gke:develop
+    zone: asia-east1-a
+    cluster: dev
+    namespace: default
+    # For debugging
+    dry_run: false
+    verbose: true
+    secrets:
+      - source: google_credentials
+        target: token
+    vars:
+      image: gcr.io/mirrormedia-1470651750304/keystone-plate:${DRONE_COMMIT_AUTHOR}_${DRONE_COMMIT_BRANCH}_${DRONE_BUILD_NUMBER}
+      app: keystone
+      tier: test
+      serviceName: keystone-svc
+      deployName: keystone-deploy
+    when:
+      event: [push]
+      branch: master
+
+  finish_slack:
+    image: plugins/slack
+    channel: jenkins
+    secrets: [slack_webhook]
+    username: keystone-plate
+    icon_url: https://avatars3.githubusercontent.com/u/6118534?v=3&s=200 
+    when:
+      status: [success, failure]
+      event: [push]
+      branch: master
+    template: >
+      {{#success build.status}}
+        Build<${DRONE_BUILD_LINK}|#{{build.number}}> *success* ${DRONE_REPO_NAME}:${DRONE_COMMIT_AUTHOR}_${DRONE_COMMIT_BRANCH}_${DRONE_BUILD_NUMBER} was well served.
+        Check out our new <https://gcr.io/mirrormedia-1470651750304/keystone-plate|keystone>
+      {{else}}
+        Houston, we have a problem. Build <${DRONE_BUILD_LINK}|#{{build.number}}> failed. Fix me please, {{build.author}}
+      {{/success}}
