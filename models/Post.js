@@ -38,7 +38,7 @@ Post.add({
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
   isAdvertised: { label: '廣告文案', type: Boolean, index: true },
-  hiddenAdvertised: { label: '廣告隱藏', type: Boolean, default: false },
+  hiddenAdvertised: { label: 'google廣告違規', type: Boolean, default: false },
   isCampaign: { label: '活動', type: Boolean, index: true },
   isAdult: { label: '18禁', type: Boolean, index: true },
   lockJS: { label: '鎖定右鍵', type: Boolean, index: true },
