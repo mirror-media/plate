@@ -1,5 +1,6 @@
 var keystone = require('arch-keystone');
 var transform = require('model-transform');
+var moment = require('moment');
 var Types = keystone.Field.Types;
 
 var Post = new keystone.List('Post', {
@@ -65,6 +66,10 @@ Post.schema.pre('remove', function(next) {
     })
 });
 Post.schema.pre('save', function(next) {
+	if (this.state == 'scheduled' && (moment(this.publishedDate) < moment())) {
+		var err = new Error("You can not schedule a data before now.");
+		next(err);
+	}
 	this.updatedBy = this._req_user.name
     if ((this.state == 'published' || this.state == 'scheduled') && ( this._req_user.role == 'author' || this._req_user.role == 'contributor')) {
         var err = new Error("You don't have the permission")
