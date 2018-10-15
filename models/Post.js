@@ -66,7 +66,7 @@ Post.schema.pre('remove', function(next) {
     })
 });
 Post.schema.pre('save', function(next) {
-	if (this.state == 'scheduled' && (moment(this.publishedDate) < moment())) {
+	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment()))) {
 		var err = new Error("You can not schedule a data before now.");
 		next(err);
 	}
