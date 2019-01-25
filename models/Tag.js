@@ -20,7 +20,7 @@ Tag.add({
   og_description: { label: 'FB分享說明', type: String, require: false},
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
-  audioSiteUse: { label: '語音網站', type: Boolean, index: true },
+  isAudioSiteItem: { label: '語音網站', type: Boolean, index: true },
   css: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
 });
