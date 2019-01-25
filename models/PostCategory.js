@@ -20,6 +20,7 @@ PostCategory.add({
   css: { label: 'CSS', type: Types.Textarea },
   javascript: { label: 'javascript', type: Types.Textarea },
   isCampaign: { label: '活動分類', type: Boolean, index: true },
+  audioSiteUse: { label: '語音網站', type: Boolean, index: true },
 });
 
 PostCategory.relationship({ ref: 'Post', refPath: 'categories' });
