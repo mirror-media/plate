@@ -1,3 +1,5 @@
+const get = require('lodash').get
+const config = require('../config')
 var keystone = require('arch-keystone');
 var transform = require('model-transform');
 var moment = require('moment');
@@ -83,6 +85,50 @@ Post.schema.pre('save', function(next) {
     }
     next();
 });
+
+/**
+ * For TTS use
+ */
+const ttsGenerator = require('../lib/ttsGenerator')
+Post.schema.post('save', doc => {
+  console.log('Post saved!')
+  
+  /**
+   * Make it process after 1 seconds in async way.
+   */
+  setTimeout(() => {
+    /**
+     * Go gen tts file.
+     */
+    const gcsConfig = get(config, [ 'options', 'gcs config' ], {})
+    const isAudioSiteItem = get(doc, 'isAudioSiteItem', false)
+    const postId = get(doc, '_id', Date.now().toString())
+    if (isAudioSiteItem) {
+      const content = get(doc, 'content.html', '')
+      const subscriptionKey = '80b4476d093340c689331bc930b99fee';
+
+      ttsGenerator.uploadFileToBucket(gcsConfig, postId, subscriptionKey, content)
+      .then(() => {
+        console.log('Post aud is uploaded. \nPost id:', postId)
+        return 
+      })
+      .catch(err => {
+        console.error('Gen aud file in fail.')
+        console.error(err)
+      })
+    } else {
+      ttsGenerator.delFileFromBucket(gcsConfig, postId)
+      .then(() => {
+        console.log('Del post aud successfully.')
+      })
+      .catch(err => {
+        console.error('Del post aud in fail.')
+        console.error(err)        
+      })
+    }
+  }, 1000)
+  
+})
 Post.editorController = true;
 Post.editorControllerTtl = 600000;
 Post.notifyBeforeLeave = true;
