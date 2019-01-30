@@ -101,9 +101,11 @@ Post.schema.post('save', doc => {
      * Go gen tts file.
      */
     const gcsConfig = get(config, [ 'options', 'gcs config' ], {})
-    const isAudioSiteItem = get(doc, 'isAudioSiteItem', false)
+    const isAd = get(doc, 'isAdvertised', false)
     const postId = get(doc, '_id', Date.now().toString())
-    if (isAudioSiteItem) {
+    const state = get(doc, 'state', 'draft')
+
+    if ((state === 'scheduled' || state === 'published') && !isAd) {
       const content = get(doc, 'content.html', '')
       const subscriptionKey = '80b4476d093340c689331bc930b99fee';
 
