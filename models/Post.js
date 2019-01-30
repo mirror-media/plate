@@ -1,5 +1,6 @@
 const get = require('lodash').get
 const config = require('../config')
+const gcsConfig = get(config, [ 'options', 'gcs config' ], {})
 var keystone = require('arch-keystone');
 var transform = require('model-transform');
 var moment = require('moment');
@@ -65,7 +66,16 @@ Post.schema.pre('remove', function(next) {
         if (err) {
             console.log(err);
         } else {
-            next();
+            ttsGenerator.delFileFromBucket(gcsConfig, this._id)
+            .then(() => {
+              console.log('Del post aud successfully.')
+              next();
+            })
+            .catch(err => {
+              console.error('Del post aud in fail.')
+              console.error(err)        
+              next();
+            })          
         }
     })
 });
@@ -100,10 +110,11 @@ Post.schema.post('save', doc => {
     /**
      * Go gen tts file.
      */
-    const gcsConfig = get(config, [ 'options', 'gcs config' ], {})
-    const isAudioSiteItem = get(doc, 'isAudioSiteItem', false)
+    const isAd = get(doc, 'isAdvertised', false)
     const postId = get(doc, '_id', Date.now().toString())
-    if (isAudioSiteItem) {
+    const state = get(doc, 'state', 'draft')
+
+    if ((state === 'scheduled' || state === 'published') && !isAd) {
       const content = get(doc, 'content.html', '')
       const subscriptionKey = '80b4476d093340c689331bc930b99fee';
 
