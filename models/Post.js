@@ -1,6 +1,7 @@
 const get = require('lodash').get
 const config = require('../config')
 const gcsConfig = get(config, [ 'options', 'gcs config' ], {})
+const azure_subscriptionKey = get(config, 'azure_subscriptionKey')
 var keystone = require('arch-keystone');
 var transform = require('model-transform');
 var moment = require('moment');
@@ -37,6 +38,7 @@ Post.add({
   topics_ref: { type: Types.Relationship, ref: 'Topic', hidden: true },
   tags: { label: '標籤', type: Types.Relationship, ref: 'Tag', many: true },
   albums: { label: '專輯', type: Types.Relationship, ref: 'Album', many: true },
+  audio: { label: '語音素材', type: Types.Relationship, ref: 'Audio' },
   relateds: { label: '相關文章', type: Types.Relationship, ref: 'Post', many: true },
   og_title: { label: 'FB分享標題', type: String, require: false},
   og_description: { label: 'FB分享說明', type: String, require: false},
@@ -47,7 +49,7 @@ Post.add({
   isCampaign: { label: '活動', type: Boolean, index: true },
   isAdult: { label: '18禁', type: Boolean, index: true },
   lockJS: { label: '鎖定右鍵', type: Boolean, index: true },
-  isAudioSiteItem: { label: '語音網站', type: Boolean, index: true },
+  isAudioSiteOnly: { label: '僅用於語音網站', type: Boolean, index: true },
   device: { label: '裝置', type: Types.Select, options: 'all, web, app', default: 'all', index: true },
   adTrace: { label: '追蹤代碼', type: Types.Textarea },
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
@@ -116,9 +118,8 @@ Post.schema.post('save', doc => {
 
     if ((state === 'scheduled' || state === 'published') && !isAd) {
       const content = get(doc, 'content.html', '')
-      const subscriptionKey = '80b4476d093340c689331bc930b99fee';
 
-      ttsGenerator.uploadFileToBucket(gcsConfig, postId, subscriptionKey, content)
+      ttsGenerator.uploadFileToBucket(gcsConfig, postId, azure_subscriptionKey, content)
       .then(() => {
         console.log('Post aud is uploaded. \nPost id:', postId)
         return 
