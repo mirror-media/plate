@@ -47,7 +47,7 @@ Post.add({
   isCampaign: { label: '活動', type: Boolean, index: true },
   isAdult: { label: '18禁', type: Boolean, index: true },
   lockJS: { label: '鎖定右鍵', type: Boolean, index: true },
-  isAudioSiteItem: { label: '語音網站', type: Boolean, index: true },
+  isAudioSiteOnly: { label: '僅用於語音網站', type: Boolean, index: true },
   device: { label: '裝置', type: Types.Select, options: 'all, web, app', default: 'all', index: true },
   adTrace: { label: '追蹤代碼', type: Types.Textarea },
   createTime: { type: Types.Datetime, default: Date.now, utc: true },

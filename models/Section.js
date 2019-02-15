@@ -17,7 +17,7 @@ Section.add({
   extend_cats: { label: '其他分類', type: Types.Relationship, ref: 'PostCategory', many: true },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
   isFeatured: { label: '置頂', type: Boolean, index: true },
-  isAudioSiteUse: { label: '語音網站', type: Boolean, index: true },
+  isAudioSiteOnly: { label: '僅用於語音網站', type: Boolean, index: true },
   style: { type: Types.Select, options: 'feature, listing, tile, full, video, light', default: 'feature' },
   og_title: { label: 'FB分享標題', type: String, require: false },
   og_description: { label: 'FB分享說明', type: String, require: false },
