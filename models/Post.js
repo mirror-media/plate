@@ -117,7 +117,7 @@ Post.schema.post('save', doc => {
     const state = get(doc, 'state', 'draft')
 
     if ((state === 'scheduled' || state === 'published') && !isAd) {
-      const content = get(doc, 'content.html', '')
+        const content = get(doc, 'content.html', '')
 
       ttsGenerator.uploadFileToBucket(gcsConfig, postId, azure_subscriptionKey, content)
       .then(() => {
