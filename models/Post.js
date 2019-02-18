@@ -70,12 +70,12 @@ Post.schema.pre('remove', function(next) {
         } else {
             ttsGenerator.delFileFromBucket(gcsConfig, this._id)
             .then(() => {
-              console.log('Del post aud successfully.')
+              console.log('Del post aud successfully.');
               next();
             })
             .catch(err => {
-              console.error('Del post aud in fail.')
-              console.error(err)        
+              console.error('Del post aud in fail.');
+              console.error(err);
               next();
             })          
         }
@@ -88,12 +88,12 @@ Post.schema.pre('save', function(next) {
 	}
 	this.updatedBy = this._req_user.name
     if ((this.state == 'published' || this.state == 'scheduled') && ( this._req_user.role == 'author' || this._req_user.role == 'contributor')) {
-        var err = new Error("You don't have the permission")
-        next(err);
+      var err = new Error("You don't have the permission");
+      next(err);
     }
     // Topics part
     if (this.topics) {
-        this.topics_ref = this.topics
+      this.topics_ref = this.topics;
     }
     next();
 });
@@ -101,9 +101,9 @@ Post.schema.pre('save', function(next) {
 /**
  * For TTS use
  */
-const ttsGenerator = require('../lib/ttsGenerator')
+const ttsGenerator = require('../lib/ttsGenerator');
 Post.schema.post('save', doc => {
-  console.log('Post saved!')
+  console.log('Post saved!');
   
   /**
    * Make it process after 1 seconds in async way.
@@ -112,33 +112,33 @@ Post.schema.post('save', doc => {
     /**
      * Go gen tts file.
      */
-    const isAd = get(doc, 'isAdvertised', false)
-    const postId = get(doc, '_id', Date.now().toString())
-    const state = get(doc, 'state', 'draft')
+    const isAd = get(doc, 'isAdvertised', false);
+    const postId = get(doc, '_id', Date.now().toString());
+    const state = get(doc, 'state', 'draft');
 
     if ((state === 'scheduled' || state === 'published') && !isAd) {
-        const content = get(doc, 'content.html', '')
+        const content = get(doc, 'content.html', '');
 
       ttsGenerator.uploadFileToBucket(gcsConfig, postId, azure_subscriptionKey, content)
       .then(() => {
-        console.log('Post aud is uploaded. \nPost id:', postId)
+        console.log('Post aud is uploaded. \nPost id:', postId);
         return 
       })
       .catch(err => {
-        console.error('Gen aud file in fail.')
-        console.error(err)
+        console.error('Gen aud file in fail.');
+        console.error(err);
       })
     } else {
       ttsGenerator.delFileFromBucket(gcsConfig, postId)
       .then(() => {
-        console.log('Del post aud successfully.')
+        console.log('Del post aud successfully.');
       })
       .catch(err => {
-        console.error('Del post aud in fail.')
-        console.error(err)        
+        console.error('Del post aud in fail.');
+        console.error(err);        
       })
     }
-  }, 1000)
+  }, 1000);
   
 })
 Post.editorController = true;
