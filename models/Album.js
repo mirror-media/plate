@@ -3,7 +3,9 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var Album = new keystone.List('Album', {
+  autokey: { from: 'name', path: 'key', unique: true },
   track: true,
+  sortable: true,
 });
 
 Album.add({
