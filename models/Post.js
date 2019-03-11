@@ -97,49 +97,10 @@ Post.schema.pre('save', function(next) {
     }
     next();
 });
-
-/**
- * For TTS use
- */
 const ttsGenerator = require('../lib/ttsGenerator');
 Post.schema.post('save', doc => {
-  console.log('Post saved!');
-  
-  /**
-   * Make it process after 1 seconds in async way.
-   */
-  setTimeout(() => {
-    /**
-     * Go gen tts file.
-     */
-    const isAd = get(doc, 'isAdvertised', false);
-    const postId = get(doc, '_id', Date.now().toString());
-    const state = get(doc, 'state', 'draft');
-
-    if ((state === 'scheduled' || state === 'published') && !isAd) {
-        const content = get(doc, 'content.html', '');
-
-      ttsGenerator.uploadFileToBucket(gcsConfig, postId, azure_subscriptionKey, content)
-      .then(() => {
-        console.log('Post aud is uploaded. \nPost id:', postId);
-        return 
-      })
-      .catch(err => {
-        console.error('Gen aud file in fail.');
-        console.error(err);
-      })
-    } else {
-      ttsGenerator.delFileFromBucket(gcsConfig, postId)
-      .then(() => {
-        console.log('Del post aud successfully.');
-      })
-      .catch(err => {
-        console.error('Del post aud in fail.');
-        console.error(err);        
-      })
-    }
-  }, 1000);
-  
+  const postId = get(doc, '_id', Date.now().toString());
+  console.log(`Post ${postId} saved!`);
 })
 Post.editorController = true;
 Post.editorControllerTtl = 600000;
