@@ -1,7 +1,6 @@
 const get = require('lodash').get
 const config = require('../config')
 const gcsConfig = get(config, [ 'options', 'gcs config' ], {})
-const azure_subscriptionKey = get(config, 'azure_subscriptionKey')
 var keystone = require('arch-keystone');
 var transform = require('model-transform');
 var moment = require('moment');
