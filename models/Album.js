@@ -18,6 +18,7 @@ Album.add({
   style: { type: Types.Select, options: 'feature, listing, tile, full', default: 'feature' },
   leading: { label: '標頭樣式', type: Types.Select, options: 'video, slideshow, image', index: true },
   writers: { label: '作者', type: Types.Relationship, ref: 'Contact', many: true },
+  vocals: { label: '主播', type: Types.Relationship, ref: 'Contact', many: true },
   extend_byline: { label: '作者（其他）', type: String, require: false },
   photographers: { label: '攝影', type: Types.Relationship, ref: 'Contact', many: true },
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
