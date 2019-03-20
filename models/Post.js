@@ -25,6 +25,7 @@ Post.add({
   camera_man: { label: '影音', type: Types.Relationship, ref: 'Contact', many: true },
   designers: { label: '設計', type: Types.Relationship, ref: 'Contact', many: true },
   engineers: { label: '工程', type: Types.Relationship, ref: 'Contact', many: true },
+  vocals: { label: '主播', type: Types.Relationship, ref: 'Contact', many: true },
   extend_byline: { label: '作者（其他）', type: String, require: false },
   heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video' },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
