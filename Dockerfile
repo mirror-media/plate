@@ -10,7 +10,8 @@ WORKDIR $REACT_SOURCE
 # COPY gcskeyfile.json /gcskeyfile.json
 COPY . $ENV
 
-RUN buildDeps=' \
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list \
+    && buildDeps=' \
         gcc \
         make \
         python \
