@@ -25,7 +25,7 @@ RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://ar
 	&& apt-get install -y node-gyp \
     && rm -rf /var/lib/apt/lists/* \
     && npm install \
-    && npm install pm2 -g
+    && npm install pm2@2.9.3 -g
 
 # RUN buildDeps=' \
 #         gcc \
