@@ -47,6 +47,14 @@ Image.add({
               watermarkBase: 2000
             }
         }, {
+            target: 'square',
+            width: 2000,
+            height: 2000,
+            options: {
+              watermark: '/public/images/20171025EA-0142.png',
+              watermarkBase: 2000
+            }
+        }, {
             target: 'tiny',
             width: 150,
             height: null,
