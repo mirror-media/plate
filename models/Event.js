@@ -10,7 +10,8 @@ var Event = new keystone.List('Event', {
 
 Event.add({
   name: { type: String, initial: true, required: true, index: true },
-  state: { label: '狀態', type: Types.Select, options: 'draft, published', default: 'draft', index: true },
+  state: { label: '狀態', type: Types.Select, options: 'draft, scheduled, published', default: 'draft', index: true },
+  publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
   sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
   eventType: { type: Types.Select, options: [ 'embedded', 'video', 'image', 'logo', 'mod' ], index: true },
   startDate: { type: Types.Datetime, initial: true, required: true },
