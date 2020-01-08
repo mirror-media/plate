@@ -3,7 +3,7 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var AudioPromotions = new keystone.List('AudioPromotions', {
-  track: true,
+    track: true,
 	sortable: true,
 });
 

@@ -7,7 +7,7 @@ var AudioMasters = new keystone.List('AudioMasters', {
 	sortable: true,
 });
 
-AudioChoices.add({
+AudioMasters.add({
     masters: { label: '名家', type: Types.Relationship, ref: 'Contact', many: false },
 });
 
