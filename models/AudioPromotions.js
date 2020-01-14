@@ -12,5 +12,7 @@ AudioPromotions.add({
   href: { label: '目標網頁', type: Types.Url, index: false },
 });
 
+AudioPromotions.defaultColumns = 'heroImage, href';
+
 transform.toJSON(AudioPromotions);
 AudioPromotions.register();

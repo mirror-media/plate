@@ -12,5 +12,7 @@ VoiceConfigs.add({
   value: { label: '設定值', type: String }
 });
 
+VoiceConfigs.defaultColumns = 'key, group, value';
+
 transform.toJSON(VoiceConfigs);
 VoiceConfigs.register();
