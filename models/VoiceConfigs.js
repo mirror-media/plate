@@ -4,7 +4,6 @@ var Types = keystone.Field.Types;
 
 var VoiceConfigs = new keystone.List('VoiceConfigs', {
     track: true,
-	sortable: true,
 });
 
 VoiceConfigs.add({
