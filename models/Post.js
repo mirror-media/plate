@@ -92,7 +92,7 @@ Post.schema.pre('save', function(next) {
       next(err);
     }
 	// check the heroImage
-	if (this.heroImage == '' and this.heroVideo == '') {
+	if (this.heroImage == '' && this.heroVideo == '') {
 		var err = new Error("You have to assign the heroImage");
 		next(err);
 	}
