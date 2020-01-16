@@ -91,6 +91,12 @@ Post.schema.pre('save', function(next) {
       var err = new Error("You don't have the permission");
       next(err);
     }
+	// check the heroImage
+	if (this.heroImage == '' and this.heroVideo == '') {
+		var err = new Error("You have to assign the heroImage");
+		next(err);
+	}
+
     // Topics part
     if (this.topics) {
       this.topics_ref = this.topics;
