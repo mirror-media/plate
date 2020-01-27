@@ -7,7 +7,7 @@ var VoiceConfigs = new keystone.List('VoiceConfigs', {
 });
 
 VoiceConfigs.add({
-  key: { label: '設定', type: Types.Select, options: 'appversion, masters_amount, masters_list_number', default: 'appversion' },
+  key: { label: '設定', type: Types.Select, options: 'ios_version, android_version, masters_amount, masters_list_number', default: 'ios_version' },
   group: { label: '群組', type: Types.Select, options: 'A, B, C', default: 'A' },
   value: { label: '設定值', type: String }
 });
