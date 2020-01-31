@@ -4,8 +4,6 @@ var Types = keystone.Field.Types;
 
 var Watch = new keystone.List('Watch', {
     track: true,
-    defaultSort: '-Createtime',
-    track: true,
 	sortable: true,
 });
 

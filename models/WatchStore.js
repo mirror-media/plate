@@ -3,8 +3,13 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var WatchStore = new keystone.List('WatchStore', {
-	autokey: { from: 'name', path: 'key', unique: true },
+	autokey: { from: 'name', path: 'key', unique: truei, index: true },
 });
+var WatchStore = new keystone.List('WatchStore', {
+    track: true,
+	sortable: true,
+});
+
 
 WatchStore.add({
 	name: { label: '店名', type: String, required: true, index: true },
