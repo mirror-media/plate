@@ -8,9 +8,9 @@ var WatchStore = new keystone.List('WatchStore', {
 
 WatchStore.add({
 	name: { label: '店名', type: String, required: true, index: true },
-	address: { label: '地址', type: String, required: true },
-	phone: { label: '電話', type: String, required: true },
-	map: { label: 'google map url', type: Types.Url, required: true },
+	address: { label: '地址', type: String },
+	phone: { label: '電話', type: String },
+	map: { label: 'google map url', type: Types.Url },
 });
 
 transform.toJSON(WatchStore);
