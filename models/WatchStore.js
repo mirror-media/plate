@@ -3,7 +3,7 @@ var transform = require('model-transform');
 var Types = keystone.Field.Types;
 
 var WatchStore = new keystone.List('WatchStore', {
-	autokey: { from: 'name', path: 'key', unique: truei, index: true },
+	autokey: { from: 'name', path: 'key', unique: true, index: true },
 });
 var WatchStore = new keystone.List('WatchStore', {
     track: true,
