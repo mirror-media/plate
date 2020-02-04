@@ -12,6 +12,7 @@ Watch.add({
   brand: { label: '品牌', type: Types.Relationship, ref: 'WatchBrand' },
   name: { label: '品名', type: String },
   type: { label: '型號', type: String },
+  style: { label: '錶款名稱', type: String },
   series: { label: '系列', type: String },
   watchImage: { label: '圖片', type: Types.ImageRelationship, ref: 'Image' },
   price: { label: '價格', type: String },
