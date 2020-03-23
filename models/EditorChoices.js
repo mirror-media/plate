@@ -9,6 +9,8 @@ var EditorChoices = new keystone.List('EditorChoices', {
 
 EditorChoices.add({
     choices: { label: '精選文章', type: Types.Relationship, ref: 'Post', many: false },
+    startDate: { type: Types.Datetime, initial: true, required: true },
+    endDate: { type: Types.Datetime, initial: true },
 });
 
 EditorChoices.relationship({ ref: 'Post', refPath: 'choices' });
