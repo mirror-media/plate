@@ -12,17 +12,18 @@ COPY . $ENV
 
 RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list \
     && buildDeps=' \
-        gcc \
-        make \
-        python \
+    gcc \
+    make \
+    python \
     ' \
     && set -x \
+    && apt-key update \
     && apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates $buildDeps \
     && apt-get install -y git \
     && apt-get install -y graphicsmagick \
     && apt-get install -y imagemagick \ 
-	&& apt-get install -y node-gyp \
+    && apt-get install -y node-gyp \
     && rm -rf /var/lib/apt/lists/* \
     && npm install \
     && npm install pm2@2.9.3 -g
