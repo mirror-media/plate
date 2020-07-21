@@ -24,7 +24,6 @@ CulturePost.add({
   designers: { label: '設計', type: Types.Relationship, ref: 'Contact', many: true },
   engineers: { label: '工程', type: Types.Relationship, ref: 'Contact', many: true },
   extend_byline: { label: '作者（其他）', type: String, require: false },
-  heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video' },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
   mobileImage: { label: '手機首圖', type: Types.ImageRelationship, ref: 'Image' },
   heroCaption: { label: '首圖圖說', type: String, require: false },
