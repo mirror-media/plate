@@ -15,6 +15,7 @@ var CulturePost = new keystone.List('CulturePost', {
 CulturePost.add({
   name: { label: '網址名稱（英文）', type: String, required: true, unique: true },
   title: { label: '標題', type: String, require: true, default: 'untitled' },
+  titleColor: { label: '標題顏色', type: String, require: true, default: '000000' },
   subtitle: { label: '副標', type: String, require: false },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, archived, invisible', default: 'draft', index: true },
   publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
