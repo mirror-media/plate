@@ -30,7 +30,7 @@ CulturePost.add({
   heroImageSize: { label: '首圖尺寸', type: Types.Select, options: 'extend, normal, small', default: 'normal', dependsOn: { heroImage: {'$regex': '.+/i'}}},
   brief: { label: '前言', type: Types.Html, wysiwyg: true, height: 150 },
   content: { label: '內文', type: Types.Html, wysiwyg: true, height: 400 },
-  relateds: { label: '相關文章', type: Types.Relationship, ref: 'Post', many: true },
+  relateds: { label: '相關文章', type: Types.Relationship, ref: 'CulturePost', many: true },
   og_title: { label: 'FB分享標題', type: String, require: false},
   og_description: { label: 'FB分享說明', type: String, require: false},
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
