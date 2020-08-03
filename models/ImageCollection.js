@@ -27,7 +27,7 @@ ImageCollection.add({
             width: 2000,
             height: null,
             options: {
-              watermark: '/public/images/20171025EA-0142.png',
+              watermark: '/public/images/2020-mirror-logo.png',
               watermarkBase: 2000
             }
         }, {
@@ -35,7 +35,7 @@ ImageCollection.add({
             width: 1200,
             height: null,
             options: {
-              watermark: '/public/images/20171025EA-0142.png',
+              watermark: '/public/images/2020-mirror-logo.png',
               watermarkBase: 2000
             }
         }, {
@@ -43,7 +43,7 @@ ImageCollection.add({
             width: 800,
             height: null,
             options: {
-              watermark: '/public/images/20171025EA-0142.png',
+              watermark: '/public/images/2020-mirror-logo.png',
               watermarkBase: 2000
             }
         }, {
@@ -51,7 +51,7 @@ ImageCollection.add({
             width: 150,
             height: null,
             options: {
-              watermark: '/public/images/20171025EA-0142.png',
+              watermark: '/public/images/2020-mirror-logo.png',
               watermarkBase: 2000
             }
         }],
