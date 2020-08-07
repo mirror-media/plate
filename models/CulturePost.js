@@ -93,6 +93,6 @@ CulturePost.schema.post('save', doc => {
 CulturePost.editorController = true;
 CulturePost.editorControllerTtl = 600000;
 CulturePost.notifyBeforeLeave = true;
-CulturePost.preview = 'https://www.mirrormedia.mg/story';
+CulturePost.preview = 'https://nuxt-dev.mirrormedia.mg/culture-post/';
 CulturePost.previewId = 'slug'
 CulturePost.register();
