@@ -1,3 +1,4 @@
+MONGO_URL = ''
 exports.options = {
 
 	'name': 'Keystone Test',
