@@ -15,7 +15,6 @@ var Post = new keystone.List('Post', {
 Post.add({
   name: { label: '網址名稱（英文）', type: String, required: true, unique: true },
   title: { label: '標題', type: String, require: true, default: 'untitled' },
-  titleColor: { label: '標題模式', type: String, require: false, options: 'light, dark', default: 'light' },
   subtitle: { label: '副標', type: String, require: false },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived, invisible', default: 'draft', index: true },
   publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
@@ -30,7 +29,6 @@ Post.add({
   extend_byline: { label: '作者（其他）', type: String, require: false },
   heroVideo: { label: 'Leading Video', type: Types.Relationship, ref: 'Video' },
   heroImage: { label: '首圖', type: Types.ImageRelationship, ref: 'Image' },
-  mobileImage: { label: '手機首圖', type: Types.ImageRelationship, ref: 'Image' },
   heroCaption: { label: '首圖圖說', type: String, require: false },
   heroImageSize: { label: '首圖尺寸', type: Types.Select, options: 'extend, normal, small', default: 'normal', dependsOn: { heroImage: {'$regex': '.+/i'}}},
   style: { label: '文章樣式', type: Types.Select, options: 'article, wide, projects, photography, script, campaign, readr', default: 'article', index: true },
