@@ -16,7 +16,7 @@ Post.add({
   name: { label: '網址名稱（英文）', type: String, required: true, unique: true },
   title: { label: '標題', type: String, require: true, default: 'untitled' },
   subtitle: { label: '副標', type: String, require: false },
-  titleColor: { label: '標題模式', type: Types.Select, require: false, options: 'light, dark', default: 'light' },
+  titleColor: { label: '標題模式', type: Types.Select, options: 'light, dark', default: 'light' },
   state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled, archived, invisible', default: 'draft', index: true },
   publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
   sections: { label: '分區', type: Types.Relationship, ref: 'Section', many: true },
@@ -108,6 +108,7 @@ Post.schema.pre('save', function(next) {
 const ttsGenerator = require('../lib/ttsGenerator');
 Post.schema.post('save', doc => {
   const postId = get(doc, '_id', Date.now().toString());
+  console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
 })
 Post.editorController = true;
