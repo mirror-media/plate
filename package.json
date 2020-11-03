@@ -29,7 +29,7 @@
 	"ieee754": "1.1.13",
 	"bn.js": "5.1.2",
 	"parse-asn1": "5.1.5",
-	"domelementtyp": "@2.0.1",
+	"domelementtype": "@2.0.1",
 	"css-tree": "1.0.0-alpha.39",
 	"mdn-data": "2.0.6",
 	"regenerate": "1.4.1",
