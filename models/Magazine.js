@@ -11,6 +11,8 @@ var bucket = config['options']['gcs config']['bucket']
 
 Magazine.add({
     title: { type: String, required: true, initial: true },
+    issue: { type: String, required: true, initial: false },
+    state: { label: '狀態', type: Types.Select, options: 'draft, published', default: 'draft', index: true },
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     magazine: {
         type: Types.GcsFile,
@@ -22,11 +24,7 @@ Magazine.add({
         publicRead: true,
     },
     coverPhoto: { type: Types.ImageRelationship, ref: 'Image' },
-    tags: {
-        type: Types.Relationship,
-        ref: 'Tag',
-        many: true
-    },
+    publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
     createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
 
