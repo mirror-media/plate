@@ -22,6 +22,7 @@ Section.add({
   og_title: { label: 'FB分享標題', type: String, require: false },
   og_description: { label: 'FB分享說明', type: String, require: false },
   og_image: { label: 'FB分享縮圖', type: Types.ImageRelationship, ref: 'Image' },
+  isMemberOnly: { label: '會員專區', type: Boolean, index: false},
   timeline: { label: 'Twitter 帳號', type: String },
   topics: { label: '專題', type: Types.Relationship, ref: 'Topic', many: true },
   css: { label: 'CSS', type: Types.Textarea },
