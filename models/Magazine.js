@@ -12,7 +12,6 @@ var bucket = config['options']['gcs config']['bucket']
 Magazine.add({
     title: { label: '標題', type: String, required: true, initial: true },
     issue: { label: '期數', type: String, required: true, initial: true },
-    state: { label: '狀態', type: Types.Select, options: 'draft, published, hidden', default: 'draft', index: true },
     description: { label: '敘述', type: Types.Html, wysiwyg: true, height: 150 },
     magazine: {
         type: Types.GcsFile,
