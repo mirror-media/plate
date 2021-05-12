@@ -25,7 +25,7 @@ Magazine.add({
     coverPhoto: { type: Types.ImageRelationship, ref: 'Image' },
     type: { label: '種類', type: Types.Select, options: 'weekly, special', default: 'weekly', index: true },
     publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
-    state: { label: '狀態', type: Types.Select, options: 'published, archived', default: 'draft', index: true },
+    state: { label: '狀態', type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
     createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
 
