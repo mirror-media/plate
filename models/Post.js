@@ -94,7 +94,7 @@ Post.schema.pre('save', function(next) {
       next(err);
     }
 	// check the heroImage
-	if (this.heroImage == '' && this.heroVideo == '') {
+	if (this.state == 'published' && !this.heroImage && !this.heroVideo) {
 		var err = new Error("You have to assign the heroImage");
 		next(err);
 	}
