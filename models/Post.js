@@ -82,10 +82,13 @@ Post.schema.pre('remove', function(next) {
         }
     })
 });
+var heoImageAlert = false;
 Post.schema.pre('save', function(next) {
 	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment().add(10, 'm')))) {
-		var err = new Error("You can not schedule a data before now.");
-		next(err);
+		//var err = new Error("You can not schedule a data before now.");
+		this.state = 'draft';
+		heroImageAlert = true;
+		next();
 	}
 	this.updatedBy = this._req_user.name
     if ((this.state == 'published' || this.state == 'scheduled') && ( this._req_user.role == 'author' || this._req_user.role == 'contributor')) {
@@ -109,6 +112,9 @@ Post.schema.post('save', doc => {
   const postId = get(doc, '_id', Date.now().toString());
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
+  if (heroImageAlert == true) {
+  	alert("Empty HeroImage");
+  }
 })
 Post.editorController = true;
 Post.editorControllerTtl = 600000;
