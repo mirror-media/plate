@@ -83,7 +83,7 @@ Post.schema.pre('remove', function(next) {
     })
 });
 var heroImageAlert = false;
-Post.schema.pre('save', function(doc, next) {
+Post.schema.pre('save', function(next) {
 	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment().add(10, 'm')))) {
 		var err = new Error("You can not schedule a data before now.");
 		next(err);
@@ -97,7 +97,6 @@ Post.schema.pre('save', function(doc, next) {
 	if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
 		//var err = new Error("You have to assign the heroImage");
 		this.state = 'draft';
-  		console.log("pre save: " + JSON.stringify(doc));
 		heroImageAlert = true;
 		next();
 	}
@@ -109,13 +108,16 @@ Post.schema.pre('save', function(doc, next) {
     next();
 });
 const ttsGenerator = require('../lib/ttsGenerator');
-Post.schema.post('save', function(doc) {
+Post.schema.post('save', function(doc, next) {
   const postId = get(doc, '_id', Date.now().toString());
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
   if (heroImageAlert == true) {
+  	heroImage = get(doc, 'heroImage', '');
+  	console.log(heroImage);
     console.log("You have to assign the heroImage");
   }
+  next()
 })
 Post.editorController = true;
 Post.editorControllerTtl = 600000;
