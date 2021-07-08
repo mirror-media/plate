@@ -112,13 +112,12 @@ Post.schema.pre('save', function(doc, next) {
     next();
 });
 const ttsGenerator = require('../lib/ttsGenerator');
-Post.schema.post('save', function(doc, next) {
+Post.schema.post('save', function(doc) {
   const postId = get(doc, '_id', Date.now().toString());
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
   if (heroImageAlert == true) {
     var err = new Error("You have to assign the heroImage");
-  	next(err)
   }
 })
 Post.editorController = true;
