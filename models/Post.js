@@ -97,7 +97,7 @@ Post.schema.pre('save', function(doc, next) {
 	if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
 		//var err = new Error("You have to assign the heroImage");
 		this.state = 'draft';
-  		console.log(i"pre save: " + JSON.stringify(doc));
+  		console.log("pre save: " + JSON.stringify(doc));
 		heroImageAlert = true;
 		next();
 	}
