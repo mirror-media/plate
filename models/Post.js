@@ -82,7 +82,6 @@ Post.schema.pre('remove', function(next) {
         }
     })
 });
-var heroImageAlert = false;
 Post.schema.pre('save', function(next) {
 	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment().add(10, 'm')))) {
 		var err = new Error("You can not schedule a data before now.");
@@ -96,8 +95,7 @@ Post.schema.pre('save', function(next) {
 	// check the heroImage
 	if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
 		//var err = new Error("You have to assign the heroImage");
-		this.state = 'draft';
-		heroImageAlert = true;
+		//this.state = 'draft';
 		next();
 	}
 
@@ -113,9 +111,13 @@ Post.schema.post('save', function(doc, next) {
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
   if (heroImageAlert == true) {
-  	heroImage = get(doc, 'heroImage', '');
-  	console.log("heroImage: " + heroImage);
-    console.log("You have to assign the heroImage");
+    Post.model.findOneAndUpdate({ '_id': postId }, { 'state': 'draft'}, function (err, doc) {
+        if (err) {
+            console.log(err);
+        }
+    })
+    var err = new Error("You have to assign the heroImage");
+	next(err)
   }
   next()
 })
