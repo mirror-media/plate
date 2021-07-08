@@ -113,7 +113,7 @@ Post.schema.post('save', doc => {
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
   if (heroImageAlert == true) {
-  	alert("Empty HeroImage");
+  	alert("Empty HeroImage/heroVideo");
   }
 })
 Post.editorController = true;
