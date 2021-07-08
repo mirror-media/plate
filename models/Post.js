@@ -110,12 +110,12 @@ Post.schema.post('save', function(doc) {
   const postId = get(doc, '_id', Date.now().toString());
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
-  if (heroImageAlert == true) {
-    Post.model.findOneAndUpdate({ '_id': postId }, { 'state': 'draft'}, function (err, doc) {
-        if (err) {
-            console.log(err);
-        }
-    })
+  //if (heroImageAlert == true) {
+  //  Post.model.findOneAndUpdate({ '_id': postId }, { 'state': 'draft'}, function (err, doc) {
+  //      if (err) {
+  //          console.log(err);
+  //      }
+  //  })
   }
 })
 Post.editorController = true;
