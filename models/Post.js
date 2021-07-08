@@ -82,7 +82,7 @@ Post.schema.pre('remove', function(next) {
         }
     })
 });
-var heoImageAlert = false;
+var heroImageAlert = false;
 Post.schema.pre('save', function(next) {
 	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment().add(10, 'm')))) {
 		var err = new Error("You can not schedule a data before now.");
