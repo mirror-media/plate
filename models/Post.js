@@ -117,7 +117,6 @@ Post.schema.post('save', function(doc, next) {
         }
     })
     var err = new Error("You have to assign the heroImage");
-	next(err)
   }
   next()
 })
