@@ -115,9 +115,6 @@ Post.schema.post('save', function(doc, next) {
   if (heroImageAlert == true) {
     var err = new Error("You have to assign the heroImage");
   	next(err)
-  } else {
-  	undefined(err)
-  	next()
   }
 })
 Post.editorController = true;
