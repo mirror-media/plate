@@ -83,7 +83,7 @@ Post.schema.pre('remove', function(next) {
     })
 });
 var heroImageAlert = false;
-Post.schema.pre('save', function(next) {
+Post.schema.pre('save', function(doc, next) {
 	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment().add(10, 'm')))) {
 		var err = new Error("You can not schedule a data before now.");
 		next(err);
@@ -96,8 +96,12 @@ Post.schema.pre('save', function(next) {
 	// check the heroImage
 	if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
 		//var err = new Error("You have to assign the heroImage");
+		const heroImage = get(doc, 'heroImage', '');
+		const heroVideo = get(doc, 'heroVideo', '');
 		this.state = 'draft';
-		heroImageAlert = true;
+		if (heroImage == '' || heroVideo == '') {
+			heroImageAlert = true;
+		}
 		next();
 	}
 
