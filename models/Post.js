@@ -112,10 +112,11 @@ Post.schema.post('save', function(doc, next) {
   const postId = get(doc, '_id', Date.now().toString());
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
-  if (heroImageAlert = true) {
+  if (heroImageAlert == true) {
     var err = new Error("You have to assign the heroImage");
   	next(err)
   } else {
+  	undefined(err)
   	next()
   }
 })
