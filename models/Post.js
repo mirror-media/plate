@@ -108,12 +108,15 @@ Post.schema.pre('save', function(next) {
     next();
 });
 const ttsGenerator = require('../lib/ttsGenerator');
-Post.schema.post('save', doc => {
+Post.schema.post('save', function(doc, next) {
   const postId = get(doc, '_id', Date.now().toString());
   console.log(JSON.stringify(doc));
   console.log(`Post ${postId} saved!`);
-  if (heroImageAlert == true) {
-  	alert("Empty HeroImage/heroVideo");
+  if (heroImageAlert = true) {
+    var err = new Error("You have to assign the heroImage");
+  	next(err)
+  } else {
+  	next()
   }
 })
 Post.editorController = true;
