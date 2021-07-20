@@ -86,7 +86,6 @@ Post.schema.pre('save', function(next) {
 	if ((this.state == 'scheduled' && (moment(this.publishedDate) < moment()))  || (this.state == 'published' && (moment(this.publishedDate) > moment().add(10, 'm')))) {
 		var err = new Error("You can not schedule a data before now.");
 		this.state = 'draft';
-		next();
 	}
 	this.updatedBy = this._req_user.name
     if ((this.state == 'published' || this.state == 'scheduled') && ( this._req_user.role == 'author' || this._req_user.role == 'contributor')) {
@@ -96,7 +95,7 @@ Post.schema.pre('save', function(next) {
 	// check the heroImage
 	if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
 		//var err = new Error("You have to assign the heroImage");
-		next();
+		this.state = 'draft';
 	}
 
     // Topics part
