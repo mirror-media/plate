@@ -93,10 +93,10 @@ Post.schema.pre('save', function(next) {
       next(err);
     }
 	// check the heroImage
-	if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
-		//var err = new Error("You have to assign the heroImage");
-		this.state = 'draft';
-	}
+	//if ((this.state == 'published' || this.state == 'scheduled') && !this.heroImage && !this.heroVideo) {
+	//	//var err = new Error("You have to assign the heroImage");
+	//	this.state = 'draft';
+	//}
 
     // Topics part
     if (this.topics) {
