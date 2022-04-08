@@ -53,6 +53,7 @@ Post.add({
   isAudioSiteOnly: { label: '僅用於語音網站', type: Boolean, index: true },
   device: { label: '裝置', type: Types.Select, options: 'all, web, app', default: 'all', index: true },
   adTrace: { label: '追蹤代碼', type: Types.Textarea },
+  redirect: { label: '廣編文轉址', type: String, require: false},
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
 });
 
