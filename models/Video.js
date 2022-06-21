@@ -30,8 +30,8 @@ Video.add({
         ref: 'Tag',
         many: true
     },
-    state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled', default: 'draft', index: true },
-	feed: { label: '供稿', type: Types.Boolean, default: true, index: true }, 
+    state: { label: '狀態', type: Types.Select, options: 'draft, published, scheduled', default: 'published', index: true },
+	feed: { label: '供稿', type: Types.Boolean, default: false, index: true }, 
     publishedDate: { label: '發佈日期', type: Types.Datetime, index: true, utc: true, default: Date.now, dependsOn: { '$or': { state: [ 'published', 'scheduled' ] } }},
     relateds: { label: '相關文章', type: Types.Relationship, ref: 'Post', many: true },
     createTime: { type: Types.Datetime, default: Date.now, utc: true },
