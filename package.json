@@ -3,6 +3,12 @@
   "version": "1.1.0",
   "private": true,
   "dependencies": {
+	"deep-equal": "1.0.1",
+	"invariant": "2.2.2",
+	"warning": "2.1.0",
+	"strict-uri-encode": "1.1.0",
+	"query-string": "3.0.3",
+	"history": "2.0.1",
     "arch-keystone": "0.5.50",
     "babel-core": "^6.4.5",
     "babel-plugin-transform-object-assign": "^6.3.13",
