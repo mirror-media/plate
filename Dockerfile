@@ -25,8 +25,8 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
     && apt-get install -y node-gyp \
     && rm -rf /var/lib/apt/lists/* \
     && npm install \
-    && npm install forever@1.0.0 -g \
-    && npm install pm2@2.9.3 -g
+    && npm install forever@1.0.0 -g
+#    && npm install pm2@2.9.3 -g
 
 # RUN buildDeps=' \
 #         gcc \
@@ -48,4 +48,4 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 EXPOSE 3000
-CMD ["forever", "start", "keystone.js"]
+CMD ["forever", "start", "keystone.js", "--spinSleepTime", "30000", "--minUptime", "10000"]
