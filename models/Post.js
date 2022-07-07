@@ -52,6 +52,7 @@ Post.add({
   lockJS: { label: '鎖定右鍵', type: Boolean, index: true },
   isAudioSiteOnly: { label: '僅用於語音網站', type: Boolean, index: true },
   device: { label: '裝置', type: Types.Select, options: 'all, web, app', default: 'all', index: true },
+  style: { label: 'CSS', type: Types.Textarea },
   adTrace: { label: '追蹤代碼', type: Types.Textarea },
   redirect: { label: '廣編文轉址 slug', type: String, require: false},
   createTime: { type: Types.Datetime, default: Date.now, utc: true },
