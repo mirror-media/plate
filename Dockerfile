@@ -46,7 +46,6 @@ RUN sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' 
 #     && npm install pm2 -g
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN forever start --spinSleepTime 30000 --minUptime 10000 keystone.js
 
 EXPOSE 3000
 CMD ["pm2", "start", "keystone.js"]
