@@ -77,7 +77,7 @@
   },
   "betterScripts": {
     "start-prod": {
-      "command": "pm2 start keystone.js --name keystone",
+      "command": "node keystone.js",
       "env": {
         "PORT": 3000
       }
