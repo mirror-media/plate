@@ -52,7 +52,7 @@
     "react-dom": "^15.2.0",
     "react-domify": "^0.2.4",
     "request": "^2.88.0",
-    "sanitize-html": "1.19.2",
+    "sanitize-html": "2.12.1",
     "store-prototype": "^1.1.1",
     "xhr": "^2.2.0",
     "xmlbuilder": "^10.1.1"
